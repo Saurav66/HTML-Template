@@ -478,9 +478,9 @@ if __name__ == '__main__':
 
 		shutil.which = find_executable
 
-	if not is_sudo_user():
-		log("Please run this script as a non-root user with sudo privileges", level=3)
-		sys.exit()
+	#if not is_sudo_user():
+	#	log("Please run this script as a non-root user with sudo privileges", level=3)
+	#	sys.exit()
 
 	args = parse_commandline_args()
 
