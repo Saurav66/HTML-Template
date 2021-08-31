@@ -466,18 +466,22 @@ def parse_commandline_args():
 
 
 if __name__ == '__main__':
+	
 
+	try:
+		from distutils.spawn import find_executable
+	except ImportError:
 		try:
-			from distutils.spawn import find_executable
-		except ImportError:
-			try:
-				subprocess.check_call('pip install --upgrade setuptools')
-			except subprocess.CalledProcessError:
-				print("Install distutils or use Python3 to run the script")
-				sys.exit(1)
+			subprocess.check_call('pip install --upgrade setuptools')
+		except subprocess.CalledProcessError:
+			print("Install distutils or use Python3 to run the script")
+			sys.exit(1)
 
-		shutil.which = find_executable
+	shutil.which = find_executable
 
+	if not is_sudo_user():
+		log("Please run this script as a non-root user with sudo privileges", level=3)
+		sys.exit()
 
 	args = parse_commandline_args()
 
