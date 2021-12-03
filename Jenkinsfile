@@ -2,20 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
+        stage('SCM Checkout') {
+            git 'https://github.com/Saurav66/HTML-Template'
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
+        stage('Email Notification') {
+            mail bcc: '', body: 'Hi', cc: '', from: '', replyTo: '', subject: 'Jenkins jobs', to: 'saruravkumar3897@gmail.com'   
         }
     }
 }
