@@ -1,7 +1,4 @@
-pipeline {
-    agent any
-
-    stages {
+node {
         stage('SCM Checkout') {
             git 'https://github.com/Saurav66/HTML-Template'
         }
@@ -9,4 +6,3 @@ pipeline {
             mail bcc: '', body: 'Hi', cc: '', from: '', replyTo: '', subject: 'Jenkins jobs', to: 'saruravkumar3897@gmail.com'   
         }
     }
-}
